@@ -1,0 +1,42 @@
+<button mat-button [matMenuTriggerFor]="menu" mat-raised-button>Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="mudaExibicao(listagem)">Clientes</button>
+  <button mat-menu-item (click)="mudaExibicao(novo)">Cadastrar</button>
+</mat-menu>
+<div *ngIf="tipoExibicao==listagem" id="listagem">
+  <table id="tabela" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef class="espacamento_5">id</th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef class="espacamento_5">nome</th>
+      <td mat-cell *matCellDef="let element" class="espacamento_5"> {{element.nome}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="idade">
+      <th mat-header-cell *matHeaderCellDef class="espacamento_5">idade</th>
+      <td mat-cell *matCellDef="let element"class="espacamento_5" > {{element.idade}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef class="espacamento_5">Editar</th>
+      <td mat-cell *matCellDef="let element" class="espacamento_5">
+        <button mat-icon-button (click)="iniciaEdicaoCliente(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+<div *ngIf="tipoExibicao==novo" id="cadastroCliente">
+  <cli-novo-cliente (novoCliente)="retornoCadastro($event)"></cli-novo-cliente>
+</div>
+<div *ngIf="tipoExibicao==edicao">
+  <cli-edita-cliente [clienteParam]="clienteEdit" (clienteEditado)="retornoClienteEditado($event)"></cli-edita-cliente>
+</div>
