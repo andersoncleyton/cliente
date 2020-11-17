@@ -1,6 +1,8 @@
 # Cliente
 Projeto realizado em carater de aprendizagem de um cadastro de cliente básico, onde é permitido listar, alterar e cadastrar novos clientes. Todos os dados são salvos em memoria.
 
+Caso tenha problemas na primeira execução, executar o comando "npm update".
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.8.
 
 ## Development server
